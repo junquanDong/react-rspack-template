@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button } from 'antd';
+import { login } from '@/store/user';
 
 const Login = (props: WithPageProps) => {
 
@@ -7,7 +8,7 @@ const Login = (props: WithPageProps) => {
   const handerLogin = () => {
     setLoading(true);
     setTimeout(() => {
-      props.dispatch({ type: 'user/login' });
+      props.dispatch(login(''));
       setLoading(false);
     }, 1000);
   }

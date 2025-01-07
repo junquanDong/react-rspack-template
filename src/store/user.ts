@@ -7,7 +7,7 @@ const initialState: UserState = {
   token: null
 }
 
-export const slice = createSlice({
+const slice = createSlice({
   name: 'user',
   initialState,
   reducers: {
@@ -15,12 +15,12 @@ export const slice = createSlice({
       state.token = "123123123123"
     },
     logout: (state) => {
-      // Redux.persistor.purge()
+      state.token = null
     },
   },
 })
 
 // Action creators are generated for each case reducer function
-// export const { login, logout } = slice.actions
+export const { login, logout } = slice.actions
 
 export default slice.reducer

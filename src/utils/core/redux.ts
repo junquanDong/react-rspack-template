@@ -1,7 +1,7 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage'; // 默认 localStorage
-import reducers from '@/modules'
+import reducers from '@/store'
 
 const persistConfig = {
   // 存储的 key
@@ -29,11 +29,6 @@ const persistor = persistStore(store);
 export type RootState = ReturnType<typeof store.getState>;
 // 推断类型：{posts: PostsState, comments: CommentsState, users: UsersState}
 export type AppDispatch = typeof store.dispatch;
-
-export {
-  store,
-  persistor
-}
 
 export default {
   store,

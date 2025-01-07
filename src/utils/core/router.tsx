@@ -20,7 +20,7 @@ function getComponentName(filePath: string) {
  */
 function genRouterElement(path: string) {
   // Lazy load the component and wrap it with WithPage
-  const Component = lazy(() => import(`../pages/${path}`).then((module) => ({ default: WithPage(module.default) })));
+  const Component = lazy(() => import(`@/pages/${path}`).then((module) => ({ default: WithPage(module.default) })));
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <Component />
@@ -83,7 +83,7 @@ function convertPathsToRoutes(ctx: __WebpackModuleApi.RequireContext) {
 }
 
 const router = createBrowserRouter(
-  convertPathsToRoutes(require.context('../pages', true, /\.(j|t)sx?$/)),
+  convertPathsToRoutes(require.context('@/pages', true, /\.(j|t)sx?$/)),
   {
     future: {
       v7_fetcherPersist: true,

@@ -18,10 +18,11 @@
     "emitDecoratorMetadata": true,
     "paths": {
       "@/*": ["src/*"],
+      "@modules/*": ["src/store/modules/*"]
     },
     "typeRoots": [
       "node_modules/@types",
-      "src/@types"
+      "src/types"
     ]
   },
   "include": ["src"],

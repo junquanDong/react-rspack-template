@@ -10,6 +10,7 @@ const targets = ["chrome >= 87", "edge >= 88", "firefox >= 78", "safari >= 14"];
 export default defineConfig({
 	devServer: {
     historyApiFallback: true,
+		allowedHosts: "all",
   },
 	context: __dirname,
 	entry: {
@@ -18,7 +19,8 @@ export default defineConfig({
 	resolve: {
 		extensions: ["...", ".ts", ".tsx", ".jsx"],
 		alias: {
-			'@': `${__dirname}/src`
+			'@': `${__dirname}/src`,
+			'@modules': `${__dirname}/src/redux/modules`
 		}
 	},
 	module: {

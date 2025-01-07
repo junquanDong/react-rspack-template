@@ -1,13 +1,19 @@
 
 import React, { useEffect } from "react";
+import { useRequest } from 'alova/client';
+import { getProductList } from "@/api/home";
+import { Button } from 'antd';
 
 const Home = ({ dispatch, useSelector, ...props }: WithPageProps) => {
-  
+
   const value = useSelector((state) => state.counter.value)
-  
+
+  const { loading, data, error, send } = useRequest(getProductList, {
+    initialData: [1],
+    immediate: false
+  })
 
   useEffect(() => {
-    
   }, [])
 
   return (
@@ -28,6 +34,13 @@ const Home = ({ dispatch, useSelector, ...props }: WithPageProps) => {
       <button onClick={() => {
         dispatch({ type: 'user/logout' });
       }}>logout</button>
+      <h2>  </h2>
+      <div>
+        <Button loading={loading} onClick={() => {
+          send({a: 2})
+        }}>request</Button>
+      </div>
+      <div>{JSON.stringify(data)}</div>
     </div>
   )
 }
