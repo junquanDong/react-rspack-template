@@ -1,5 +1,6 @@
 import {
   createBrowserRouter,
+  createHashRouter,
   RouterProvider,
 } from "react-router-dom";
 import { RouteObject } from "react-router-dom";
@@ -82,7 +83,7 @@ function convertPathsToRoutes(ctx: __WebpackModuleApi.RequireContext) {
   return [root];
 }
 
-const router = createBrowserRouter(
+const router = createBrowserRouter(  // createHashRouter
   convertPathsToRoutes(require.context('@/pages', true, /\.(j|t)sx?$/)),
   {
     future: {

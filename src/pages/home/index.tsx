@@ -8,7 +8,7 @@ const Home = ({ dispatch, useSelector, ...props }: WithPageProps) => {
 
   const value = useSelector((state) => state.counter.value)
 
-  const { loading, data, error, send } = useRequest(getProductList, {
+  const { loading, data, error, send, abort } = useRequest(getProductList, {
     initialData: [1],
     immediate: false
   })

@@ -16,12 +16,19 @@ export default defineConfig({
 	entry: {
 		main: "./src/main.tsx"
 	},
+	output: {
+		filename: "[name].[contenthash].js",
+		chunkFilename: "[name].[contenthash].js",
+		// 构建时清除输出目录
+		clean: true,
+	},
 	resolve: {
 		extensions: ["...", ".ts", ".tsx", ".jsx"],
 		alias: {
 			'@': `${__dirname}/src`,
 			'@modules': `${__dirname}/src/redux/modules`
-		}
+		},
+		modules: [`${__dirname}/src`, 'node_modules'],
 	},
 	module: {
 		rules: [
@@ -68,6 +75,19 @@ export default defineConfig({
 		isDev ? new RefreshPlugin() : null
 	].filter(Boolean),
 	optimization: {
+		// tree shaking
+		usedExports: true,
+		// code splitting
+		splitChunks: {
+			chunks: "all",
+			cacheGroups: {
+				vendor: {
+					test: /[\\/]node_modules[\\/]/,
+					name: "vendors",
+					chunks: "all",
+				},
+			},
+		},
 		minimizer: [
 			new rspack.SwcJsMinimizerRspackPlugin(),
 			new rspack.LightningCssMinimizerRspackPlugin({
@@ -75,7 +95,12 @@ export default defineConfig({
 			})
 		]
 	},
+	
 	experiments: {
 		css: true
-	}
+	},
+	// externals: {
+	// 	react: "React",
+	// 	"react-dom": "ReactDOM"
+	// }
 });
